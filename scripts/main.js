@@ -4,11 +4,10 @@ var X, Y;
 var sigDigits = 5;
 var regrCoeff = [];
 
-go();
-
 function go() {
   buildxy();
   linregr();
+  alert(regrCoeff);
 }
 
 function buildxy() {
@@ -108,4 +107,3 @@ function makeArray2D(X, Y) {
 console.log(X);
 console.log(Y);
 console.log(regrCoeff);
-alert(regrCoeff);
