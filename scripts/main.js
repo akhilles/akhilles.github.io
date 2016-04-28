@@ -108,3 +108,4 @@ function makeArray2D(X, Y) {
 console.log(X);
 console.log(Y);
 console.log(regrCoeff);
+alert(regrCoeff);
