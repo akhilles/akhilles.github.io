@@ -15,7 +15,7 @@ function get_num_players(server_name) {
   var low = 70000000;
   var high = 80000000;
 
-
+  find_cutoff(low, high);
 }
 
 function find_cutoff(low, high) {
@@ -26,7 +26,7 @@ function find_cutoff(low, high) {
     console.log("= " + low);
     return low;
   }
-  
+
   middle = ((low + high) / 2) >> 0;
   var url = "https://" + server + ".api.pvp.net/api/lol/" + server + "/v1.4/summoner/" + middle + "?api_key=" + api_key;
   console.log(url);
