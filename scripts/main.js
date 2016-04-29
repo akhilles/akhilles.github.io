@@ -4,7 +4,13 @@ var X, Y;
 var sigDigits = 5;
 var regrCoeff = [];
 
-function go() {
+var data = {a:1, b:2, c:3};
+var json = JSON.stringify(data);
+var blob = new Blob([json], {type: "application/json"});
+var url  = URL.createObjectURL(blob);
+document.getElementById("save").href = url;
+
+function regression_go() {
   buildxy();
   linregr();
   alert(regrCoeff);
@@ -103,7 +109,3 @@ function makeArray2D(X, Y) {
   this.length = X;
   for (var i = 0; i < X; i++) this[i] = new makeArray1D(Y);
 }
-
-console.log(X);
-console.log(Y);
-console.log(regrCoeff);
