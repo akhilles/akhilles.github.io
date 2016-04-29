@@ -2,8 +2,8 @@ var server;
 var api_key;
 var xml_http;
 
-function get_num_players(server_name) {
-  var server = server_name;
+function get_num_players() {
+  var server = "na";
   var api_key;
 
   var api_key_url = "development_api_key.txt";
