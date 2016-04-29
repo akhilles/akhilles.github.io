@@ -4,7 +4,6 @@ var xml_http;
 
 function get_num_players() {
   server = "na";
-  var api_key;
 
   var api_key_url = "development_api_key.txt";
   xml_http = new XMLHttpRequest();
