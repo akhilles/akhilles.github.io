@@ -31,7 +31,7 @@ function find_cutoff(low, high) {
   console.log(url);
 
   xml_http.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+    if (xml_http.readyState == 4 && xml_http.status == 200){
       low = middle;
       console.log("> " + middle);
     }
