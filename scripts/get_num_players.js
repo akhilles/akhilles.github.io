@@ -30,19 +30,19 @@ function find_cutoff(low, high) {
   var url = "https://" + server + ".api.pvp.net/api/lol/" + server + "/v1.4/summoner/" + middle + "?api_key=" + api_key;
   console.log(url);
 
-  xml_http.open("GET", url, false);
+  xml_http.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+      low = middle;
+      console.log("> " + middle);
+    }
+    else{
+      high = middle;
+      console.log("<" + middle);
+    }
+  };
+  xml_http.open("GET", url, true);
   xml_http.send();
 
-  if (xml_http.status == 200){
-    low = middle;
-    console.log("> " + middle);
-  }
-  else{
-    high = middle;
-    console.log("<" + middle);
-  }
-
   while (rate_control){}
-
   return find_cutoff(low, high);
 }
