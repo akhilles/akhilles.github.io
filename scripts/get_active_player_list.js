@@ -29,9 +29,9 @@ function build_active_list(index) {
       var newest_game_time = data_array.matches[0].timestamp;
       if (newest_game_time > patch_67_release){
         active_accounts.push(valid_accounts[index]);
-        console.log("YES - " valid_accounts[index]);
+        console.log("YES - " + valid_accounts[index]);
       }
-      else console.log("NO - " valid_accounts[index]);
+      else console.log("NO - " + valid_accounts[index]);
     }
   };
   xml_http.open("GET", url, true);
