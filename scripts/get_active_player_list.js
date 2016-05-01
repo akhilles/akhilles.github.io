@@ -1,4 +1,4 @@
-var server = na;
+var server = "na";
 var api_key = "2a81b03a-5c46-4bc7-a97a-e868931a1815";
 var xml_http;
 var valid_accounts;
