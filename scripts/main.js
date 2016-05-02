@@ -4,12 +4,6 @@ var X, Y;
 var sigDigits = 5;
 var regrCoeff = [];
 
-var data = {a:1, b:2, c:3};
-var json = JSON.stringify(data);
-var blob = new Blob([json], {type: "application/json"});
-var url  = URL.createObjectURL(blob);
-document.getElementById("save").href = url;
-
 function regression_go() {
   buildxy();
   linregr();
