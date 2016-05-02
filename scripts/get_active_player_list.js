@@ -21,23 +21,28 @@ function build_active_list(index) {
     console.log(active_accounts.length);
     return;
   }
-  var summoner_id = valid_accounts[index];
-  var url = "https://" + server + ".api.pvp.net/api/lol/" + server + "/v2.2/matchlist/by-summoner/" + summoner_id + "?rankedQueues=RANKED_SOLO_5x5&seasons=SEASON2016&api_key=" + api_key;
+
+  var summoner_ids = "" + valid_accounts[index];
+  for (var j = index + 1; j < Math.min(valid_accounts.length, index + 40); j++) summoner_ids += "," + valid_accounts[j];
+  var url = "https://" + server + ".api.pvp.net/api/lol/" + server + "/v2.5/league/by-summoner/" + summoner_ids + "?entry&api_key=" + api_key;
+  console.log(summoner_ids);
   xml_http.onreadystatechange = function() {
-    if (xml_http.readyState == 4){
+    if (xml_http.readyState == 4 && xml_http.status == 200){
       var data_array = JSON.parse(xml_http.responseText);
-      var newest_game_time = data_array.matches[0].timestamp;
-      if (newest_game_time > patch_67_release){
-        active_accounts.push(valid_accounts[index]);
-        console.log("YES - " + valid_accounts[index]);
+
+      for (var key in data_array){
+        if (!data_array[key][0].entries[0].isInactive){
+          active_accounts.push(key);
+          console.log("YES - " + key);
+        }
+        else console.log("NO - " + key);
       }
-      else console.log("NO - " + valid_accounts[index]);
     }
   };
   xml_http.open("GET", url, true);
   xml_http.send();
 
   setTimeout(function(){
-    build_active_list(index + 1);
+    build_active_list(index + 40);
   }, 1201);
 }
