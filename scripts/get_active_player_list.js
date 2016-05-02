@@ -16,14 +16,21 @@ function get_active_player_list(){
 }
 
 function build_active_list(index) {
-  if (index == valid_accounts.length){
+  if (index >= valid_accounts.length){
+    var json = JSON.stringify(active_accounts);
+    var blob = new Blob([json], {type: "application/json"});
+    var url  = URL.createObjectURL(blob);
+
+    console_log_output = "<a download=\"valid_accounts.json\" href=\""+url+"\">Download active NA accounts</a><br>";
+    document.getElementById("console_log").innerHTML = console_log_output;
+
     console.log(valid_accounts.length);
     console.log(active_accounts.length);
     return;
   }
 
   var summoner_ids = "" + valid_accounts[index];
-  for (var j = index + 1; j < Math.min(valid_accounts.length, index + 10); j++) summoner_ids += "," + valid_accounts[j];
+  for (var j = index + 10; j < Math.min(valid_accounts.length, index + 100); j += 10) summoner_ids += "," + valid_accounts[j];
   var url = "https://" + server + ".api.pvp.net/api/lol/" + server + "/v2.5/league/by-summoner/" + summoner_ids + "?entry&api_key=" + api_key;
   console.log(summoner_ids);
   xml_http.onreadystatechange = function() {
@@ -35,7 +42,9 @@ function build_active_list(index) {
           active_accounts.push(key);
           console.log("YES - " + key);
         }
-        else console.log("NO - " + key);
+        else{
+          console.log("NO - " + key);
+        }
       }
     }
   };
@@ -43,6 +52,6 @@ function build_active_list(index) {
   xml_http.send();
 
   setTimeout(function(){
-    build_active_list(index + 10);
+    build_active_list(index + 100);
   }, 1201);
 }
