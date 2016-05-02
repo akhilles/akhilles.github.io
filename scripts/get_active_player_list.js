@@ -23,7 +23,7 @@ function build_active_list(index) {
   }
 
   var summoner_ids = "" + valid_accounts[index];
-  for (var j = index + 1; j < Math.min(valid_accounts.length, index + 40); j++) summoner_ids += "," + valid_accounts[j];
+  for (var j = index + 1; j < Math.min(valid_accounts.length, index + 10); j++) summoner_ids += "," + valid_accounts[j];
   var url = "https://" + server + ".api.pvp.net/api/lol/" + server + "/v2.5/league/by-summoner/" + summoner_ids + "?entry&api_key=" + api_key;
   console.log(summoner_ids);
   xml_http.onreadystatechange = function() {
@@ -43,6 +43,6 @@ function build_active_list(index) {
   xml_http.send();
 
   setTimeout(function(){
-    build_active_list(index + 40);
+    build_active_list(index + 10);
   }, 1201);
 }
