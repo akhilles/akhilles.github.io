@@ -1,10 +1,6 @@
 var active_accounts;
 
 function build_matrix(){
-  valid_accounts = JSON.parse(xml_http.responseText);
-
-  var patch_67_release = 1459915201000;
-  var patch_68_release = 1461124801000;
   var data = [];
 
   for (var i = 0; i < 1; i++){
