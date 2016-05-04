@@ -9,7 +9,7 @@ function build_matrix(){
     for (var j = 0; j < 26; j++){
       var rank = {novice:[], expert:[]};
       data[i].push(rank);
-      for (var l = 0; l < champion_names; l++){
+      for (var l = 0; l < champion_names.length; l++){
         var data_collection = {champion:champion_names[l], coeffs:[], data_points:[]};
         data[i][j].novice.push(data_collection);
         data[i][j].expert.push(data_collection);
@@ -40,7 +40,7 @@ function recursive_build(i) {
   xmlhttp1.onreadystatechange = function() {
     if (xmlhttp1.readyState == 4 && xmlhttp1.status == 200) ranked_data = JSON.parse(xmlhttp1.responseText);
   };
-  xmlhttp1.open("GET", url, true);
+  xmlhttp1.open("GET", url1, true);
   xmlhttp1.send();
 
   setTimeout(function(){
