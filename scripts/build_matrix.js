@@ -5,7 +5,7 @@ function build_matrix(){
 
   for (var i = 0; i < 1; i++){
     var day = [];
-    data.push(patch);
+    data.push(day);
     for (var j = 0; j < 26; j++){
       var rank = {novice:[], expert:[]};
       data[i].push(rank);
