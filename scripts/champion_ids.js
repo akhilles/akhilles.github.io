@@ -15,7 +15,7 @@ function build_champions(){
   }
   for (var i = 0; i < champion_names.length; i++){
     for (var j = 0; j < champion_names.length - 1; j++){
-      if (champion_ids[j].localeCompare(champion_ids[j+1]) > 0){
+      if (champion_names[j].localeCompare(champion_names[j+1]) > 0){
         var temp_name = champion_names[j];
         champion_names[j] = champion_names[j+1];
         champion_names[j+1] = temp_name;
@@ -25,5 +25,5 @@ function build_champions(){
       }
     }
   }
-  
+
 }
