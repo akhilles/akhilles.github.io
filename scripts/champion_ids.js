@@ -1,11 +1,13 @@
 var champion_names = [];
 var champion_ids = [];
+var server = "na";
+var api_key = document.getElementById("api_key").value;
 
 build_champions();
 
 function build_champions(){
   var xml_http = new XMLHttpRequest();
-  xml_http.open("GET", "https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?api_key=2a81b03a-5c46-4bc7-a97a-e868931a1815", false);
+  xml_http.open("GET", "https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?api_key=" + api_key, false);
   xml_http.send();
   var champion_info = JSON.parse(xml_http.responseText);
   for (var key in champion_info.data){

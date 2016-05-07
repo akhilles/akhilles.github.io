@@ -1,6 +1,3 @@
-var server;
-var api_key;
-var xml_http;
 var temp_count;
 var total_count;
 var num_intervals;
@@ -8,9 +5,7 @@ var console_log_output;
 var start_time_epoch = 1430884801000;   // May 6th, 2015 when champion mastery was implemented on all servers
 
 function get_valid_players() {
-  server = "euw";
-  api_key = "2a81b03a-5c46-4bc7-a97a-e868931a1815";
-  xml_http = new XMLHttpRequest();
+  var xml_http = new XMLHttpRequest();
 
   temp_count = 0;
   total_count = 0;
@@ -29,6 +24,7 @@ function query_machine(start, interval, end){
   for (var j = 1; j <= 39; j++) summoner_ids += "," + (start + (j * interval));
   var url = "https://" + server + ".api.pvp.net/api/lol/" + server + "/v1.4/summoner/" + summoner_ids + "?api_key=" + api_key;
 
+  var xml_http = new XMLHttpRequest();
   xml_http.onreadystatechange = function() {
     if (xml_http.readyState == 4){
       if (xml_http.status == 200){

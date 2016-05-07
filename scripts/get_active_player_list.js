@@ -1,11 +1,8 @@
-var server = "na";
-var api_key = "2a81b03a-5c46-4bc7-a97a-e868931a1815";
-var xml_http;
 var valid_accounts;
 var active_accounts = [];
 
 function get_active_player_list(){
-  xml_http = new XMLHttpRequest();
+  var xml_http = new XMLHttpRequest();
   xml_http.open("GET", "assets/summoner_ids/na/valid_accounts_na.json", false);
   xml_http.send();
   valid_accounts = JSON.parse(xml_http.responseText);
@@ -31,6 +28,7 @@ function build_active_list(index) {
   for (var j = index + 1; j < Math.min(valid_accounts.length, index + 10); j += 1) summoner_ids += "," + valid_accounts[j];
   var url = "https://" + server + ".api.pvp.net/api/lol/" + server + "/v2.5/league/by-summoner/" + summoner_ids + "?entry&api_key=" + api_key;
 
+  var xml_http = new XMLHttpRequest();
   xml_http.onreadystatechange = function() {
     if (xml_http.readyState == 4 && xml_http.status == 200){
       var data_array = JSON.parse(xml_http.responseText);
